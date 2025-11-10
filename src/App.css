@@ -21,8 +21,8 @@
   --text-secondary: #cccccc;
   --text-muted: #888888;
   --border: #404040;
-  --accent: #d4a574;
-  --accent-hover: #e6b885;
+  --accent: #a16222;
+  --accent-hover: #8b541d;
   --shadow: rgba(0, 0, 0, 0.2);
   --shadow-hover: rgba(0, 0, 0, 0.3);
   --focus-ring: #e6b885;
@@ -65,6 +65,12 @@ input:focus-visible {
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.header-main {
+  flex: 1 1 280px;
 }
 
 .title {
@@ -74,13 +80,23 @@ input:focus-visible {
   letter-spacing: -0.02em;
 }
 
+.favorites-hint {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+}
+
 .header-actions {
   display: flex;
   gap: 0.75rem;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .favorites-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
   background: none;
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -101,11 +117,14 @@ input:focus-visible {
 }
 
 .favorites-toggle:disabled {
-  opacity: 0.5;
+  opacity: 0.75;
   cursor: not-allowed;
 }
 
 .theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background: none;
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -213,23 +232,25 @@ input:focus-visible {
 }
 
 .random-button {
-  background: none;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 0.75rem 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 999px;
+  padding: 0.75rem 1.75rem;
   font-family: 'EB Garamond', serif;
   font-size: 1rem;
-  color: var(--text-secondary);
   cursor: pointer;
   transition: all 0.2s ease;
-  background-color: var(--bg-secondary);
+  box-shadow: 0 8px 18px var(--shadow);
 }
 
 .random-button:hover {
-  color: var(--text-primary);
-  border-color: var(--accent);
+  background-color: var(--accent-hover);
   transform: translateY(-1px);
-  box-shadow: 0 4px 8px var(--shadow-hover);
+  box-shadow: 0 10px 24px var(--shadow-hover);
 }
 
 .results {
@@ -252,11 +273,15 @@ input:focus-visible {
   flex-direction: column;
   justify-content: center;
   position: relative;
+  max-width: 40rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1rem;
 }
 
 .quote {
   font-size: 1.4rem;
-  line-height: 1.7;
+  line-height: 1.85;
   color: var(--text-primary);
   margin-bottom: 1rem;
   opacity: 0;
@@ -308,6 +333,23 @@ input:focus-visible {
   flex-wrap: wrap;
 }
 
+.button-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.refresh-button,
+.clear-button,
+.favorite-button,
+.copy-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .refresh-button,
 .clear-button,
 .favorite-button,
@@ -324,7 +366,28 @@ input:focus-visible {
   background-color: var(--bg-secondary);
 }
 
-.refresh-button:hover:not(:disabled),
+.refresh-button {
+  background-color: var(--accent);
+  color: white;
+  border: none;
+  box-shadow: 0 6px 16px var(--shadow);
+  border-radius: 999px;
+}
+
+.refresh-button:hover:not(:disabled) {
+  background-color: var(--accent-hover);
+  color: white;
+  box-shadow: 0 10px 24px var(--shadow-hover);
+}
+
+.refresh-button:disabled {
+  background-color: var(--bg-secondary);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  box-shadow: none;
+  opacity: 0.6;
+}
+
 .clear-button:hover:not(:disabled),
 .favorite-button:hover:not(:disabled),
 .copy-button:hover:not(:disabled) {
@@ -334,7 +397,6 @@ input:focus-visible {
   box-shadow: 0 4px 8px var(--shadow-hover);
 }
 
-.refresh-button:disabled,
 .clear-button:disabled,
 .favorite-button:disabled,
 .copy-button:disabled {
@@ -345,6 +407,8 @@ input:focus-visible {
 .favorite-button {
   font-size: 1.2rem;
   padding: 0.75rem 1rem;
+  gap: 0;
+  justify-content: center;
 }
 
 .favorite-button.is-favorite {
@@ -355,6 +419,32 @@ input:focus-visible {
 .favorite-button.is-favorite:hover:not(:disabled) {
   color: var(--accent-hover);
   border-color: var(--accent-hover);
+}
+
+@media (max-width: 640px) {
+  .header {
+    padding: 1.5rem 1.5rem 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 420px) {
+  .header-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .favorites-toggle,
+  .theme-toggle {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 .empty-state {
