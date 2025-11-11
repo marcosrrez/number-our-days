@@ -28,8 +28,8 @@ const useTypewriter = (text, options = {}) => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
     }
-    setDisplayText(text);
-    setCurrentIndex(text.length);
+    setDisplayText(text || '');
+    setCurrentIndex(text ? text.length : 0);
     setIsTyping(false);
     if (onComplete) onComplete();
   };
@@ -47,7 +47,7 @@ const useTypewriter = (text, options = {}) => {
 
     // If no text or animation disabled, show immediately
     if (!text || !enabled) {
-      setDisplayText(text);
+      setDisplayText(text || '');
       return;
     }
 
@@ -64,6 +64,8 @@ const useTypewriter = (text, options = {}) => {
 
   useEffect(() => {
     // Animate character by character
+    if (!text) return; // Guard against undefined text
+
     if (currentIndex < text.length && enabled) {
       timeoutRef.current = setTimeout(() => {
         setDisplayText(text.substring(0, currentIndex + 1));
