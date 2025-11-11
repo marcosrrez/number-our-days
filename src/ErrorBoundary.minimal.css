@@ -1,0 +1,113 @@
+/* ============================================
+   ERROR BOUNDARY STYLES
+   Clean, minimal error display
+   ============================================ */
+
+.error-boundary {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background-color: var(--bg-primary, #fafaf9);
+  color: var(--text-primary, #1c1917);
+}
+
+:root.dark .error-boundary {
+  background-color: var(--bg-primary, #1a1a1a);
+  color: var(--text-primary, #f0f0f0);
+}
+
+.error-content {
+  max-width: 600px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.error-title {
+  font-size: 2rem;
+  font-family: 'EB Garamond', serif;
+  font-weight: 500;
+  color: var(--text-primary, #1c1917);
+  margin: 0;
+}
+
+:root.dark .error-title {
+  color: var(--text-primary, #f0f0f0);
+}
+
+.error-message {
+  font-size: 1.125rem;
+  font-family: 'EB Garamond', serif;
+  line-height: 1.6;
+  color: var(--text-secondary, #57534e);
+  margin: 0;
+}
+
+:root.dark .error-message {
+  color: var(--text-secondary, #a3a3a3);
+}
+
+.error-button {
+  align-self: center;
+  padding: 0.75rem 2rem;
+  border-radius: 24px;
+  border: 1px solid var(--accent, #8b5a2b);
+  background: var(--accent, #8b5a2b);
+  color: white;
+  cursor: pointer;
+  font-family: 'EB Garamond', serif;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.error-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+:root.dark .error-button {
+  border-color: var(--accent, #d4a574);
+  background: var(--accent, #d4a574);
+  color: var(--bg-primary, #1a1a1a);
+}
+
+.error-details {
+  margin-top: 2rem;
+  text-align: left;
+  padding: 1rem;
+  border: 1px solid var(--border, #e7e5e4);
+  border-radius: 8px;
+  background: var(--bg-secondary, #ffffff);
+}
+
+:root.dark .error-details {
+  border-color: var(--border, #404040);
+  background: var(--bg-secondary, #262626);
+}
+
+.error-details summary {
+  cursor: pointer;
+  font-family: 'EB Garamond', serif;
+  color: var(--text-secondary, #57534e);
+  margin-bottom: 0.5rem;
+}
+
+:root.dark .error-details summary {
+  color: var(--text-secondary, #a3a3a3);
+}
+
+.error-stack {
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  color: var(--text-primary, #1c1917);
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  margin: 0;
+}
+
+:root.dark .error-stack {
+  color: var(--text-primary, #f0f0f0);
+}
