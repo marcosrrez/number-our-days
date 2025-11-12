@@ -191,7 +191,12 @@ const App = () => {
               className="hero-input"
               value={search.term}
               onChange={(e) => setSearch(prev => ({ ...prev, term: e.target.value }))}
-              onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  e.preventDefault();
+                  handleSearch();
+                }
+              }}
               onFocus={() => shouldShowHint('search-hint') && dismissHint('search-hint')}
               autoFocus={!isFirstVisit}
               aria-label="Enter a theme to search for quotes"
@@ -342,7 +347,12 @@ const App = () => {
               className="search-modal-input"
               value={search.term}
               onChange={(e) => setSearch(prev => ({ ...prev, term: e.target.value }))}
-              onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  e.preventDefault();
+                  handleSearch();
+                }
+              }}
               autoFocus
               aria-label="Search for themes"
             />
