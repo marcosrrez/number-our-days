@@ -250,14 +250,24 @@ const App = () => {
       </a>
 
       <header className="header" role="banner">
-        <h1 className="title">Number Our Days</h1>
+        <div className="header-main">
+          <h1 className="title">Number Our Days</h1>
+          {favorites.length === 0 && (
+            <p className="favorites-hint" id="favorites-hint">
+              Save a quote to revisit it here later.
+            </p>
+          )}
+        </div>
         <div className="header-actions" role="group" aria-label="Header actions">
           <button
             className="favorites-toggle"
             onClick={handleShowFavorites}
             disabled={favorites.length === 0}
             aria-label={`View favorites (${favorites.length} saved)`}
-            title={`View favorites (${favorites.length})`}
+            title={favorites.length === 0
+              ? 'Save a quote to unlock your favorites'
+              : `View favorites (${favorites.length})`}
+            aria-describedby={favorites.length === 0 ? 'favorites-hint' : undefined}
           >
             <span aria-hidden="true">★</span> {favorites.length}
           </button>
@@ -315,6 +325,7 @@ const App = () => {
             onClick={handleRandomQuote}
             aria-label="Get a random quote from any theme"
           >
+            <span className="button-icon" aria-hidden="true">🎲</span>
             Random Quote
           </button>
         </div>
@@ -361,6 +372,7 @@ const App = () => {
                   ? "No more quotes available in this theme"
                   : "Show another quote from this theme"}
               >
+                <span className="button-icon" aria-hidden="true">↻</span>
                 Another
               </button>
               <button
@@ -377,13 +389,15 @@ const App = () => {
                 onClick={copyToClipboard}
                 aria-label={copiedTooltip ? "Quote copied to clipboard" : "Copy quote to clipboard"}
               >
-                {copiedTooltip ? '✓ Copied' : 'Copy'}
+                <span className="button-icon" aria-hidden="true">📋</span>
+                {copiedTooltip ? 'Copied' : 'Copy'}
               </button>
               <button
                 className="clear-button"
                 onClick={clearResults}
                 aria-label="Clear current quote and search"
               >
+                <span className="button-icon" aria-hidden="true">⌫</span>
                 Clear
               </button>
             </div>
